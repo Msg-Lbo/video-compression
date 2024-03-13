@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    @apply bg-slate-100
+}
+
+a {
+    @apply text-slate-500 no-underline hover:text-slate-400 duration-300
+}
+
+.i-icon {
+    @apply flex items-center justify-center
+}
+
+.drag {
+    -webkit-app-region: drag;
+}
+
+.no-drag,
+a,
+button,
+input,
+select,
+textarea {
+    -webkit-app-region: no-drag;
+}
+
+.el-message {
+    top: 30px !important;
+    background-color: #34495e !important;
+    padding: 3px 10px !important;
+    gap: 2px !important;
+
+    .el-icon {
+        margin-top: 2px !important;
+    }
+
+    .el-icon,
+    .el-message__content {
+        font-size: 12px;
+    }
+
+    .el-badge {
+        display: none;
+    }
+}
