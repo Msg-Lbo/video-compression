@@ -3,11 +3,11 @@ import { MainProgressNoticeType, VideoState, VideoType } from "@renderer/types"
 import { ElMessage } from "element-plus"
 import { ref, toRefs } from "vue"
 
+const isRun = ref(false)
 export default () => {
     const { config } = useConfigStore()
     const video = ref<VideoType>()
     const { videoSavePath, files } = toRefs(config)
-    const isRun = ref(false)
 
     const validata = () => {
         let message = ''
@@ -35,19 +35,25 @@ export default () => {
                     compress()
                     break;
                 case MainProgressNoticeType.ERROR:
-                    ElMessage.error({ message: data, type: 'error', grouping: true })
                     video.value!.status = VideoState.ERROR
+                    ElMessage({ message: data, type: 'error', grouping: true })
                     break;
                 case MainProgressNoticeType.DIREDCORY_CHECK:
-                    ElMessage.error({ message: data, type: 'error', grouping: true })
                     video.value!.status = VideoState.READY
+                    ElMessage({ message: data, type: 'error', grouping: true })
                     isRun.value = false
+                    break;
+                case MainProgressNoticeType.FILE_IS_EXIST:
+                    video.value!.status = VideoState.ERROR
+                    ElMessage({ message: data, type: 'error', grouping: false })
+                    compress()
                     break;
                 case MainProgressNoticeType.STOP:
-                    ElMessage.error({ message: data, type: 'warning', grouping: true })
                     video.value!.status = VideoState.ERROR
+                    ElMessage({ message: data, type: 'warning', grouping: true })
                     isRun.value = false
                     break;
+
             }
         })
     }
@@ -56,7 +62,6 @@ export default () => {
         isRun.value = true
         compress()
     }
-    progressNotice()
     const compress = () => {
         getCompressFile()
         if (validata() === false) return
@@ -66,7 +71,8 @@ export default () => {
             size: config.size,
             type: config.videoType,
             saveDirectory: config.videoSavePath,
+            bitrate: config.bitrate,
         })
     }
-    return { run, isRun }
+    return { run, isRun, progressNotice }
 }

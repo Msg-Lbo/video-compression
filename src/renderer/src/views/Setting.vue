@@ -18,6 +18,17 @@
         tip="请设置如:24的数值"
       />
     </Card>
+    <Card title="输出视频格式">
+      <el-select v-model="config.videoType" placeholder="">
+        <el-option
+          v-for="(item, index) in config.videoTypes"
+          :key="index"
+          :label="item"
+          :value="item"
+        >
+        </el-option>
+      </el-select>
+    </Card>
     <Card title="输出目录">
       <div class="flex items-center gap-2">
         <el-input v-model="config.videoSavePath" disabled placeholder="请选择输出目录" clearable />

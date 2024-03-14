@@ -15,7 +15,7 @@
         </div>
       </el-upload>
       <div class="button" @click="run">
-        <refresh theme="outline" size="32" :class="{ 'isRun': isRun }" />
+        <refresh theme="outline" size="32" :class="{ isRun: isRun }" />
       </div>
     </section>
   </main>
@@ -26,13 +26,13 @@ import { Plus, Refresh } from '@icon-park/vue-next'
 import useVideos from '@renderer/composables/useVideos'
 import useCompress from '@renderer/composables/useCompress'
 const { addFile } = useVideos()
-const { run, isRun } = useCompress()
+const { run, isRun, progressNotice } = useCompress()
+progressNotice()
 </script>
 
 <style lang="scss" scoped>
-.isRun{
+.isRun {
   @apply animate-spin text-slate-300 cursor-wait;
-
 }
 .button {
   @apply w-20 h-20 rounded-lg bg-white flex justify-center items-center text-slate-600;

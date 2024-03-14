@@ -18,6 +18,7 @@ declare module 'vue' {
     ElOptions: typeof import('element-plus/es')['ElOptions']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElSlider: typeof import('element-plus/es')['ElSlider']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     Frame: typeof import('./src/components/Frame.vue')['default']
     FrameSizeSet: typeof import('./src/components/FrameSizeSet.vue')['default']

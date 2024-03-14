@@ -15,7 +15,7 @@ export default () => {
             const video = config.files[index]
             if (video.status === VideoState.COMPRESS) {
                 ElMessage({ message: '请等待视频压缩完成', type: 'success', grouping: true })
-            }else{
+            } else {
                 config.files.splice(index, 1)
             }
         } catch (e) {
@@ -40,6 +40,7 @@ export default () => {
     // 视频状态对应的背景颜色
     const bgColor = (video: VideoType) => {
         return {
+            [VideoState.READY]: '#fff',
             [VideoState.COMPRESS]: '#f6e58d',
             [VideoState.ERROR]: '#ff7979',
             [VideoState.FINISHED]: '#badc58'

@@ -60,6 +60,16 @@ export default class Ffmpeg {
             )
             return false
         }
+
+        if (existsSync(this.getSaveFilePath())) {
+            // dialog.showErrorBox('错误', '保存路径不存在')
+            this.window.webContents.send(
+                'mainProcessNotice',
+                MainProgressNoticeType.FILE_IS_EXIST,
+                '文件已存在'
+            )
+            return false
+        }
         return true
     }
     stop() {
@@ -72,11 +82,12 @@ export default class Ffmpeg {
     }
     run() {
         if (!this.validate()) return
+        // console.log(this.options);
         this.ffmpeg
             .FPS(this.options.fps)
             .videoCodec('libx264')
             .size(this.options.size)
-            .videoBitrate(this.options.bitrate || '500k')
+            .videoBitrate(this.options.bitrate + 'k')
             // 转换格式
             .format(this.options.type)
             // .addOption('-vcodec', 'd3d11va', '-c:v', 'h264_amf', '-preset', 'ultrafast')

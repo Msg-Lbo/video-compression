@@ -5,7 +5,8 @@
       :style="`--process:${video.progress >= 100 ? 100 : video.progress}%;--bgColor:${bgColor(video)}`"
     >
       <div class="text">
-        {{ video.name }}--{{ video.status }}--{{ video.progress }}
+        {{ video.name }}
+        <!-- --{{ video.status }}--{{ video.progress }} -->
       </div>
       <div class="icon">
         <close-one theme="outline" size="16" @click="remove(index)" />
@@ -25,6 +26,7 @@ const { remove, bgColor } = useVideos()
 <style lang="scss" scoped>
 .video {
   @apply bg-white px-3 py-2 rounded-[2px] mb-2 mx-3 text-slate-600 text-xs flex justify-between items-center relative z-10;
+  // background-color: var(--bgColor);
 
   &::after {
     content: '';
@@ -32,11 +34,11 @@ const { remove, bgColor } = useVideos()
     width: var(--process);
     background-color: var(--bgColor);
   }
-  // &::before{
-  //   content: '';
-  //   @apply w-[100%] h-[100%] absolute  left-0 bottom-0 rounded-[2px] -z-10;
-  //   border-bottom: 2px solid var(--bgColor);
-  // }
+  &::before {
+    content: '';
+    @apply w-[100%] h-[100%] absolute  left-0 bottom-0 rounded-[2px] -z-10;
+    border-bottom: 2px solid var(--bgColor);
+  }
   .text {
     @apply truncate;
   }

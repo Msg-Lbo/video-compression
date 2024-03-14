@@ -9,6 +9,7 @@ export default defineStore('config', () => {
     frame: '60',
     videoTypes: ['mp4', 'avi', 'webm', 'ogg'],
     videoType: 'mp4',
+    bitrate: 500,
     files: [] as VideoType[],
     videoSavePath: ''
   })
@@ -17,5 +18,7 @@ export default defineStore('config', () => {
     config
   }
 }, {
-  persist: true
+  persist: {
+    paths: ['config.videoSavePath', 'config.sizes', 'config.size', 'config.frames', 'config.frame', 'config.videoType', 'config.bitrate']
+  }
 })

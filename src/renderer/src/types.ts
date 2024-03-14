@@ -4,7 +4,8 @@ export enum MainProgressNoticeType {
     ERROR = 'error',
     PROGRESS = 'progress',
     DIREDCORY_CHECK = 'directoryCheck',
-    STOP = 'stop'
+    STOP = 'stop',
+    FILE_IS_EXIST = 'fileIsExist'
 }
 
 // 视频状态
